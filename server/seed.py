@@ -1,34 +1,20 @@
-#!/usr/bin/env python3
-
-from random import choice as rc
-
 from faker import Faker
-
-from app import app
-from models import db, Message
-
-fake = Faker()
-
-usernames = [fake.first_name() for i in range(4)]
-if "Duane" not in usernames:
-    usernames.append("Duane")
+from app import app, db  # Import your Flask app and SQLAlchemy instance from app.py
+from models import Message  # Import your SQLAlchemy models from models.py
 
 def make_messages():
+    fake = Faker()
 
-    Message.query.delete()
-    
-    messages = []
+    with app.app_context():  # Use app.app_context() to ensure the Flask app context
+        db.create_all()
+        Message.query.delete()
 
-    for i in range(20):
-        message = Message(
-            body=fake.sentence(),
-            username=rc(usernames),
-        )
-        messages.append(message)
+        for _ in range(10):
+            content = fake.text()
+            message = Message(content=content)
+            db.session.add(message)
 
-    db.session.add_all(messages)
-    db.session.commit()        
+        db.session.commit()
 
 if __name__ == '__main__':
-    with app.app_context():
-        make_messages()
+    make_messages()

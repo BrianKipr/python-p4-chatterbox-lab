@@ -1,0 +1,23 @@
+{
+  "name": "python-p4-chatterbox-lab",
+  "version": "1.0.0",
+  "description": "## Learning Goals",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm start",
+    "server": "python chatterbox-server/server/app.py"
+
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrianKipr/python-p4-chatterbox-lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrianKipr/python-p4-chatterbox-lab/issues"
+  },
+  "homepage": "https://github.com/BrianKipr/python-p4-chatterbox-lab#readme"
+}
+  
